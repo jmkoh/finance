@@ -37,7 +37,9 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <MantineProvider>
-        <HeaderMenu />
+        <div style={{ position: 'sticky', top: 0, zIndex: 1000, width: '100%', backgroundColor: 'white' }}>
+            <HeaderMenu />
+          </div>
         <div style={{ minHeight: '80vh', paddingBottom: '4rem' }}>
             {children}
           </div>
