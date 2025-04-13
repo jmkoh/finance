@@ -1,6 +1,6 @@
 
 import Link from 'next/link';
-import { IconHomeDollar, IconAd2, IconChevronDown, IconClock, IconPhoneDone, IconCarCrash, IconPlane, IconCreditCard, IconCalendarDollar  } from '@tabler/icons-react';
+import { IconHomeDollar, IconAd2, IconChevronDown, IconClock, IconPhoneDone, IconCarCrash, IconPlane, IconCreditCard, IconCalendarDollar,IconSun, IconMoon  } from '@tabler/icons-react';
   import {
     Anchor,
     Box,
@@ -18,11 +18,14 @@ import { IconHomeDollar, IconAd2, IconChevronDown, IconClock, IconPhoneDone, Ico
     ThemeIcon,
     UnstyledButton,
     useMantineTheme,
+    ActionIcon, 
+    useMantineColorScheme
   } from '@mantine/core';
 
 import { useDisclosure } from '@mantine/hooks';
-import { MantineLogo } from '@mantinex/mantine-logo';
 import classes from './HeaderMenu.module.css';
+import { useEffect, useState } from 'react';
+
 const mortagesdata = [
     {
       icon: IconHomeDollar,
@@ -76,15 +79,22 @@ const mortagesdata = [
 export function Logo() {
     return (
       <Text fw={700} size="xl" variant="gradient" gradient={{ from: 'blue', to: 'cyan' }}>
-        MyBrand
+        Wealth Matters
       </Text>
     );
   }
+
 export function HeaderMenu() {
     const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
-    const [linksOpened, { toggle: toggleLinks }] = useDisclosure(false);
+    const [mortageslinksOpened, { toggle: toggleMortagesLinks }] = useDisclosure(false);
+    const [insurancelinksOpened, { toggle: toggleInsuranceLinks }] = useDisclosure(false);
+    const [creditproductlinksOpened, { toggle: toggleCreditProductLinks }] = useDisclosure(false);
     const theme = useMantineTheme();
+    const [mounted, setMounted] = useState(false);
 
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
     const mortagesLinks = mortagesdata.map((item) => (
     <UnstyledButton
@@ -153,7 +163,8 @@ export function HeaderMenu() {
             </Group>
         </UnstyledButton>
         )); 
-           
+    const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+     
       return (
         <Box>
           <header className={classes.header}>
@@ -265,13 +276,32 @@ export function HeaderMenu() {
 
               </Group>
     
-              <Group visibleFrom="sm">
-                <IconPhoneDone></IconPhoneDone>
-                <Text>6888 8888</Text>
-                <IconClock></IconClock>
-                <Text>Mon - Fri, 9:00am - 7:00pm</Text>
-              </Group>
-    
+              <Group gap="md" align="center">
+      <Group gap={5} align="center">
+        <IconPhoneDone size={16} />
+        <Text size="sm">6888 8888</Text>
+      </Group>
+
+      <Divider orientation="vertical" />
+
+      <Group gap={5} align="center">
+        <IconClock size={16} />
+        <Text size="sm">Mon - Fri, 9:00am - 7:00pm</Text>
+      </Group>
+
+      <Divider orientation="vertical" />
+
+      <ActionIcon
+        variant="default"
+        onClick={toggleColorScheme}
+        size="lg"
+        radius="xl"
+        aria-label="Toggle color scheme"
+      >
+        {mounted && (colorScheme === 'dark' ? <IconSun size={20} /> : <IconMoon size={20} />)}
+      </ActionIcon>
+    </Group>
+
               <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />
             </Group>
           </header>
@@ -291,21 +321,35 @@ export function HeaderMenu() {
               <a href="#" className={classes.link}>
                 Home
               </a>
-              <UnstyledButton className={classes.link} onClick={toggleLinks}>
+              <UnstyledButton className={classes.link} onClick={toggleMortagesLinks}>
                 <Center inline>
                   <Box component="span" mr={5}>
-                    Features
+                    Mortages
                   </Box>
                   <IconChevronDown size={16} color={theme.colors.blue[6]} />
                 </Center>
               </UnstyledButton>
-              <Collapse in={linksOpened}>{mortagesLinks}</Collapse>
-              <a href="#" className={classes.link}>
-                Learn
-              </a>
-              <a href="#" className={classes.link}>
-                Academy
-              </a>
+              <Collapse in={mortageslinksOpened} p={15}>{mortagesLinks}</Collapse>
+
+              <UnstyledButton className={classes.link} onClick={toggleInsuranceLinks}>
+                <Center inline>
+                  <Box component="span" mr={5}>
+                    Insurance
+                  </Box>
+                  <IconChevronDown size={16} color={theme.colors.blue[6]} />
+                </Center>
+              </UnstyledButton>
+              <Collapse in={insurancelinksOpened} p={15}>{insuranceLinks}</Collapse>
+
+              <UnstyledButton className={classes.link} onClick={toggleCreditProductLinks}>
+                <Center inline>
+                  <Box component="span" mr={5}>
+                    Mortages
+                  </Box>
+                  <IconChevronDown size={16} color={theme.colors.blue[6]} />
+                </Center>
+              </UnstyledButton>
+              <Collapse in={creditproductlinksOpened} p={15}>{creditProductLinks}</Collapse>
              {/*
               <Divider my="sm" />
             

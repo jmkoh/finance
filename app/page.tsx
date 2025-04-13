@@ -1,9 +1,14 @@
 'use client';
 import cx from 'clsx';
-import { Button, Container, Overlay, Text, Title, Box, TextInput, Textarea, Group, SimpleGrid, ThemeIcon, BackgroundImage, Center } from '@mantine/core';
+import { useForm } from '@mantine/form';
+import { Carousel } from '@mantine/carousel';
+import { useMediaQuery } from '@mantine/hooks';
+import { Button, Container, Overlay, Text, Title, Box, TextInput, Textarea, Group, SimpleGrid, ThemeIcon, Paper, useMantineTheme  } from '@mantine/core';
 import classes from './HeroContentLeft.module.css';
 import { IconCookie, IconGauge, IconLock, IconMessage2, IconUser } from '@tabler/icons-react';
-import { useForm } from '@mantine/form';
+import '@mantine/carousel/styles.css';
+
+
 
 export const MOCKDATA = [
   {
@@ -59,8 +64,113 @@ export function Feature({ icon: Icon, title, description }: FeatureProps) {
     </div>
   );
 }
+// Carousel card
+interface CardProps {
+  image: string;
+  title: string;
+  category: string;
+}
+function Card({ image, title, category }: CardProps) {
+  return (
+    <Paper
+      shadow="md"
+      p="xl"
+      radius="md"
+      style={{ backgroundImage: `url(${image})` }}
+      className={classes.card}
+    >
+      <div>
+        <Text className={classes.category} size="xs">
+          {category}
+        </Text>
+        <Title order={3} className={classes.title_carousel}>
+          {title}
+        </Title>
+      </div>
+      <Button variant="white" color="dark">
+        Read article
+      </Button>
+    </Paper>
+  );
+}
+
+const data = [
+  {
+    image:
+      'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Smart Investing Strategies for 2025',
+    category: 'investment',
+  },
+  {
+    image:
+      'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2015&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'How to Build Credit as a First-Time Borrower',
+    category: 'credit',
+  },
+  {
+    image:
+      'https://images.unsplash.com/photo-1639189702833-8de5ecf2ca8f?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Top Mortgage Tips for Home Buyers',
+    category: 'mortgage',
+  },
+  {
+    image:
+      'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Understanding Your Insurance Options',
+    category: 'insurance',
+  },
+  {
+    image:
+      'https://images.unsplash.com/photo-1607863680198-23d4b2565df0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'Budgeting Hacks to Maximize Savings',
+    category: 'personal finance',
+  },
+  {
+    image:
+      'https://images.unsplash.com/photo-1511376868136-742c0de8c9a8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    title: 'How Fintech is Shaping the Future of Banking',
+    category: 'technology',
+  },
+];
+
+
+const statsdata = [
+  {
+    title: 'Page views',
+    stats: '456,133',
+    description: '24% more than in the same month last year, 33% more that two years ago',
+  },
+  {
+    title: 'New users',
+    stats: '2,175',
+    description: '13% less compared to last month, new user engagement up by 6%',
+  },
+  {
+    title: 'Completed orders',
+    stats: '1,994',
+    description: '1994 orders were completed this month, 97% satisfaction rate',
+  },
+];
 
 export default function Home() {
+// stats
+const stats = statsdata.map((stat) => (
+  <div key={stat.title} className={classes.stat}>
+    <Text className={classes.count_stats}>{stat.stats}</Text>
+    <Text className={classes.title_stats}>{stat.title}</Text>
+    <Text className={classes.description_stats}>{stat.description}</Text>
+  </div>
+));
+
+// cards
+  const theme = useMantineTheme();
+  const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
+  const slides = data.map((item) => (
+    <Carousel.Slide key={item.title}>
+      <Card {...item} />
+    </Carousel.Slide>
+  ));
+
   const features = MOCKDATA.map((feature, index) => <Feature {...feature} key={index} />);
 
   const form = useForm({
@@ -89,7 +199,7 @@ export default function Home() {
 
         <Container size={640}>
           <Text size="lg" className={classes.description}>
-          At MyBrand, we believe financial services should be simple, transparent, and built around your life goals. Whether you're planning to buy your first home, protect your assets, or manage everyday expenses—we're here to make it happen.
+          At Wealth Matters, we believe financial services should be simple, transparent, and built around your life goals. Whether you're planning to buy your first home, protect your assets, or manage everyday expenses—we're here to make it happen.
           </Text>
         </Container>
 
@@ -101,13 +211,13 @@ export default function Home() {
         </div>
       </div>
     </div>
-
+   {/* Pointers Section */}
     <Container className={classes.wrapper2}>
       <Title className={classes.title2}>Smart. Simple. Secure.</Title>
 
       <Container size={560} p={0}>
         <Text size="sm" className={classes.description2}>
-        At MyBrand, we provide modern financial solutions designed to grow with you. Whether you're investing, saving, or securing your future—we're here to guide you with clarity and confidence.n.
+        At Wealth Matters, we provide modern financial solutions designed to grow with you. Whether you're investing, saving, or securing your future—we're here to guide you with clarity and confidence.n.
         </Text>
       </Container>
 
@@ -120,8 +230,25 @@ export default function Home() {
         {features}
       </SimpleGrid>
     </Container>
+{/* Stats Section */}
+    <Container fluid pt={20} pb={20} p={0}>
 
+<div className={classes.root}>{stats}</div>
+</Container>
 
+{/* Carousel Section */}
+    <Container fluid pb={50}>
+    <Carousel
+      slideSize={{ base: '100%', sm: '33.33%' }}
+      slideGap={{ base: 2, sm: 'xl' }}
+      align="start"
+      slidesToScroll={mobile ? 1 : 2}
+    >
+      {slides}
+    </Carousel>
+    </Container>
+ 
+   
           {/* Contact Form Section */}
           <div className={classes.wrapper_contact}>
           <form onSubmit={form.onSubmit(() => {})}>     

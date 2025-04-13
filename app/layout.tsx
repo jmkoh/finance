@@ -11,7 +11,7 @@ import { Footer } from './Footer'; // your custom nav
 export function Logo() {
     return (
       <Text fw={700} size="xl" variant="gradient" gradient={{ from: 'blue', to: 'cyan' }}>
-        MyBrand
+        Wealth Matters
       </Text>
     );
   }
@@ -37,9 +37,7 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <MantineProvider>
-        <div style={{ position: 'sticky', top: 0, zIndex: 1000, width: '100%', backgroundColor: 'white' }}>
             <HeaderMenu />
-          </div>
         <div style={{ minHeight: '80vh', paddingBottom: '4rem' }}>
             {children}
           </div>
