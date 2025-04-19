@@ -175,7 +175,8 @@ export default function HomeLoan() {
         {Object.entries(form.values).map(([key, value]) => (
           value && (
             <Group key={key} justify="space-between">
-              <Text fw={500}>{labels[key]}</Text>
+              <Text fw={500}>{labels[key as keyof typeof labels]}</Text>
+
               <Text>{String(value)}</Text>
             </Group>
           )
