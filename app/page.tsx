@@ -49,7 +49,7 @@ interface FeatureProps {
   title: React.ReactNode;
   description: React.ReactNode;
 }
-export function Feature({ icon: Icon, title, description }: FeatureProps) {
+function Feature({ icon: Icon, title, description }: FeatureProps) {
   return (
     <div>
       <ThemeIcon variant="light" size={40} radius={40}>
