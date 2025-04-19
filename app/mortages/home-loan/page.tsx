@@ -189,7 +189,7 @@ export default function HomeLoan() {
       <div className={classes.wrapper}>
         <Overlay color="#000" opacity={0.65} zIndex={1} />
         <Container style={{ position: 'relative', zIndex: 2, color: 'white' }} size="sm">
-          <Group align="center" spacing="xs">
+          <Group align="center">
             <IconHome size={32} />
             <Title order={1} style={{ fontWeight: 700 }}>Home Loans</Title>
           </Group>
