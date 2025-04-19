@@ -204,7 +204,7 @@ export default function HomeLoan() {
           <form onSubmit={handleSubmit}>
             <Stepper active={active} onStepClick={setActive} allowNextStepsSelect={false} size="md" color="indigo">
               <Stepper.Step label="Enquiry Type" description="Your goal">
-                <Radio.Group label="Step 1: Choose the type of enquiry" {...form.getInputProps('enquiryType')} spacing="lg">
+                <Radio.Group label="Step 1: Choose the type of enquiry" {...form.getInputProps('enquiryType')}>
                   <Flex wrap="wrap" justify="center" gap="md" pt="md">{cards}</Flex>
                 </Radio.Group>
               </Stepper.Step>
