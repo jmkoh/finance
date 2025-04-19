@@ -2,7 +2,6 @@
 import Link from 'next/link';
 import { IconHomeDollar, IconAd2, IconChevronDown, IconClock, IconPhoneDone, IconCarCrash, IconPlane, IconCreditCard, IconCalendarDollar,IconSun, IconMoon  } from '@tabler/icons-react';
   import {
-    Anchor,
     Box,
     Burger,
     Button,

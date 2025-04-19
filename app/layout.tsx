@@ -1,11 +1,11 @@
 'use client';
 
-import type { Metadata } from "next";
+//import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 //import "./globals.css";
-import { IconChevronDown } from '@tabler/icons-react';
+//import { IconChevronDown } from '@tabler/icons-react';
 import '@mantine/core/styles.css';
-import { ColorSchemeScript, MantineProvider, mantineHtmlProps, Text } from '@mantine/core';
+import { ColorSchemeScript, MantineProvider, Text } from '@mantine/core';
 import { HeaderMenu } from './HeaderMenu'; // your custom nav
 import { Footer } from './Footer'; // your custom nav
 export function Logo() {
