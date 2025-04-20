@@ -11,7 +11,10 @@
     height: 100px;
     width: 100%;
   }
-
+  @media (max-width: $mantine-breakpoint-xs) {
+    height: 175px;
+    width: 100%;
+  }
 }
 
 .link {
@@ -29,7 +32,6 @@
     height: 42px;
     width: 100%;
   }
-
   @mixin hover {
     background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
   }
