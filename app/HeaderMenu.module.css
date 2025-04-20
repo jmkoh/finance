@@ -6,6 +6,12 @@
   padding-left: var(--mantine-spacing-md);
   padding-right: var(--mantine-spacing-md);
   border-bottom: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    height: 100px;
+    width: 100%;
+  }
+
 }
 
 .link {
