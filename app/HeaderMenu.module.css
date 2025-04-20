@@ -12,7 +12,7 @@
     width: 100%;
   }
   @media (max-width: $mantine-breakpoint-xs) {
-    height: 175x;
+    height: 175px;
     width: 100%;
   }
 }
