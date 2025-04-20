@@ -11,7 +11,10 @@
     height: 100px;
     width: 100%;
   }
-
+  @media (max-width: $mantine-breakpoint-xs) {
+    height: 175x;
+    width: 100%;
+  }
 }
 
 .link {
