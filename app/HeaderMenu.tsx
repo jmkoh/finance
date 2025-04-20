@@ -18,7 +18,8 @@ import { IconHomeDollar, IconAd2, IconChevronDown, IconClock, IconPhoneDone, Ico
     UnstyledButton,
     useMantineTheme,
     ActionIcon, 
-    useMantineColorScheme
+    useMantineColorScheme,
+    Flex
   } from '@mantine/core';
 
 import { useDisclosure } from '@mantine/hooks';
@@ -275,31 +276,31 @@ export function HeaderMenu() {
 
               </Group>
     
-              <Group gap="md" align="center">
-      <Group gap={5} align="center">
-        <IconPhoneDone size={16} />
-        <Text size="sm">6888 8888</Text>
-      </Group>
+              <Group gap="md" align="center" visibleFrom="sm">
+            <Group gap={5} align="center">
+              <IconPhoneDone size={16} />
+              <Text size="sm">6888 8888</Text>
+            </Group>
 
-      <Divider orientation="vertical" />
+            <Divider orientation="vertical" />
 
-      <Group gap={5} align="center">
-        <IconClock size={16} />
-        <Text size="sm">Mon - Fri, 9:00am - 7:00pm</Text>
-      </Group>
+            <Group gap={5} align="center">
+              <IconClock size={16} />
+              <Text size="sm">Mon - Fri, 9:00am - 7:00pm</Text>
+            </Group>
 
-      <Divider orientation="vertical" />
+            <Divider orientation="vertical" />
 
-      <ActionIcon
-        variant="default"
-        onClick={toggleColorScheme}
-        size="lg"
-        radius="xl"
-        aria-label="Toggle color scheme"
-      >
-        {mounted && (colorScheme === 'dark' ? <IconSun size={20} /> : <IconMoon size={20} />)}
-      </ActionIcon>
-    </Group>
+            <ActionIcon
+              variant="default"
+              onClick={toggleColorScheme}
+              size="lg"
+              radius="xl"
+              aria-label="Toggle color scheme"
+            >
+              {mounted && (colorScheme === 'dark' ? <IconSun size={20} /> : <IconMoon size={20} />)}
+            </ActionIcon>
+          </Group>
 
               <Burger opened={drawerOpened} onClick={toggleDrawer} hiddenFrom="sm" />
             </Group>
@@ -317,7 +318,7 @@ export function HeaderMenu() {
             <ScrollArea h="calc(100vh - 80px" mx="-md">
               <Divider my="sm" />
     
-              <a href="#" className={classes.link}>
+              <a href="/" className={classes.link}>
                 Home
               </a>
               <UnstyledButton className={classes.link} onClick={toggleMortagesLinks}>
@@ -349,15 +350,33 @@ export function HeaderMenu() {
                 </Center>
               </UnstyledButton>
               <Collapse in={creditproductlinksOpened} p={15}>{creditProductLinks}</Collapse>
-             {/*
+             
               <Divider my="sm" />
+                
+              <Flex justify="space-between" align="center" px="md">
+              <div>
+                <Group gap="xs">
+                  <IconPhoneDone size={16} />
+                  <Text size="sm">6888 8888</Text>
+                </Group>
+                <Group gap="xs" mt={4}>
+                  <IconClock size={16} />
+                  <Text size="sm">Mon - Fri, 9:00am - 7:00pm</Text>
+                </Group>
+              </div>
+
+              <ActionIcon
+                variant="default"
+                onClick={toggleColorScheme}
+                size="lg"
+                radius="xl"
+                aria-label="Toggle color scheme"
+              >
+                {mounted && (colorScheme === 'dark' ? <IconSun size={20} /> : <IconMoon size={20} />)}
+              </ActionIcon>
+            </Flex>
             
             
-              <Group justify="center" grow pb="xl" px="md">
-                <Button variant="default">Log in</Button>
-                <Button>Sign up</Button>
-              </Group>
-            */}
             </ScrollArea>
           </Drawer>
         </Box>
